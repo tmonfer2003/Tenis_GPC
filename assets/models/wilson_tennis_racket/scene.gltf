@@ -1,0 +1,442 @@
+{
+  "accessors": [
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 794,
+      "max": [
+        277.3683776855469,
+        131.6736297607422,
+        23.31087875366211
+      ],
+      "min": [
+        -404.0411071777344,
+        -131.67356872558594,
+        -23.31087875366211
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 9528,
+      "componentType": 5126,
+      "count": 794,
+      "max": [
+        1.0,
+        0.99970543384552,
+        0.9999142289161682
+      ],
+      "min": [
+        -0.9945138096809387,
+        -0.9997806549072266,
+        -0.9999141097068787
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 794,
+      "max": [
+        0.9740726351737976,
+        0.9999997019767761,
+        1.0,
+        1.0
+      ],
+      "min": [
+        -0.9725409746170044,
+        -0.9999998211860657,
+        -1.0,
+        -1.0
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 794,
+      "max": [
+        0.9798913598060608,
+        0.984184980392456
+      ],
+      "min": [
+        0.014589190483093262,
+        0.014346429146826267
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 2904,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 19056,
+      "componentType": 5126,
+      "count": 60,
+      "max": [
+        268.4945983886719,
+        123.42650604248047,
+        7.62939453125e-06
+      ],
+      "min": [
+        -62.46673583984375,
+        -123.50153350830078,
+        -7.62939453125e-06
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 19776,
+      "componentType": 5126,
+      "count": 60,
+      "max": [
+        7.937112656009049e-08,
+        2.2319107984003494e-07,
+        1.0
+      ],
+      "min": [
+        -1.3965529888082528e-07,
+        -2.055876109352539e-07,
+        1.0
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "byteOffset": 12704,
+      "componentType": 5126,
+      "count": 60,
+      "max": [
+        1.0,
+        2.3195857465907466e-06,
+        1.3965579626074032e-07,
+        1.0
+      ],
+      "min": [
+        1.0,
+        -1.3345895695238141e-06,
+        -7.937111945466313e-08,
+        1.0
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 6352,
+      "componentType": 5126,
+      "count": 60,
+      "max": [
+        0.9932426810264587,
+        0.9986116290092468
+      ],
+      "min": [
+        0.009499702602624893,
+        0.0015228763222694397
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 11616,
+      "componentType": 5125,
+      "count": 282,
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "shakira.clancy (https://sketchfab.com/shakira.clancy)",
+      "license": "SKETCHFAB Standard (https://sketchfab.com/licenses)",
+      "source": "https://sketchfab.com/3d-models/wilson-tennis-racket-89cfc984eada49a4a926216c1457fbbf",
+      "title": "Wilson Tennis Racket"
+    },
+    "generator": "Sketchfab-16.16.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 12744,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 6832,
+      "byteOffset": 12744,
+      "byteStride": 8,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 20496,
+      "byteOffset": 19576,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 13664,
+      "byteOffset": 40072,
+      "byteStride": 16,
+      "name": "floatBufferViews",
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 53736,
+      "uri": "scene.bin"
+    }
+  ],
+  "extensionsUsed": [
+    "KHR_materials_specular"
+  ],
+  "images": [
+    {
+      "uri": "textures/Asset_TennisRacket_Low1_baseColor.png"
+    },
+    {
+      "uri": "textures/Asset_TennisRacket_Low1_metallicRoughness.png"
+    },
+    {
+      "uri": "textures/Asset_TennisRacket_Low1_normal.png"
+    },
+    {
+      "uri": "textures/Asset_TennisRacket_Strings_Mat_baseColor.png"
+    },
+    {
+      "uri": "textures/Asset_TennisRacket_Strings_Mat_metallicRoughness.png"
+    },
+    {
+      "uri": "textures/Asset_TennisRacket_Strings_Mat_normal.png"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_specular": {
+          "specularColorFactor": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "specularFactor": 0.29104850605258986
+        }
+      },
+      "name": "Asset_TennisRacket_Low1",
+      "normalTexture": {
+        "index": 2
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicRoughnessTexture": {
+          "index": 1
+        }
+      }
+    },
+    {
+      "alphaMode": "BLEND",
+      "doubleSided": true,
+      "name": "Asset_TennisRacket_Strings_Mat",
+      "normalTexture": {
+        "index": 5
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 3
+        },
+        "metallicRoughnessTexture": {
+          "index": 4
+        }
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Asset_TennisRacket_Low_Asset_TennisRacket_Low1_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TANGENT": 2,
+            "TEXCOORD_0": 3
+          },
+          "indices": 4,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Asset_TennisRacket_Strings_Low_Asset_TennisRacket_Strings_Mat_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 6,
+            "POSITION": 5,
+            "TANGENT": 7,
+            "TEXCOORD_0": 8
+          },
+          "indices": 9,
+          "material": 1,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.220446049250313e-16,
+        -1.0,
+        0.0,
+        0.0,
+        1.0,
+        2.220446049250313e-16,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Sketchfab_model"
+    },
+    {
+      "children": [
+        2
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Asset_TennisRacket_Low.fbx"
+    },
+    {
+      "children": [
+        3
+      ],
+      "name": "RootNode"
+    },
+    {
+      "children": [
+        4,
+        6
+      ],
+      "matrix": [
+        0.009999999776482582,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.009999999776482582,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.009999999776482582,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Asset_TennisRacket_Low"
+    },
+    {
+      "children": [
+        5
+      ],
+      "name": "Asset_TennisRacket_Low"
+    },
+    {
+      "mesh": 0,
+      "name": "Asset_TennisRacket_Low_Asset_TennisRacket_Low1_0"
+    },
+    {
+      "children": [
+        7
+      ],
+      "name": "Asset_TennisRacket_Strings_Low"
+    },
+    {
+      "mesh": 1,
+      "name": "Asset_TennisRacket_Strings_Low_Asset_TennisRacket_Strings_Mat_0"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Sketchfab_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 0,
+      "source": 1
+    },
+    {
+      "sampler": 0,
+      "source": 2
+    },
+    {
+      "sampler": 0,
+      "source": 3
+    },
+    {
+      "sampler": 0,
+      "source": 4
+    },
+    {
+      "sampler": 0,
+      "source": 5
+    }
+  ]
+}

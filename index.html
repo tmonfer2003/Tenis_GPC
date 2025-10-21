@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Juego de Tenis 3D</title>
+  <style>
+    body {
+            margin: 0;
+            overflow: hidden;
+            font-family: sans-serif;
+        }
+
+        canvas {
+            display: block;
+        }
+
+        #blocker {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 10;
+            }
+
+        #instructions {
+            text-align: center;
+            color: white;
+            }
+
+        #instructions p {
+            margin-bottom: 15px;
+            font-size: 20px;
+            }
+
+        #startButton {
+            padding: 15px 35px;
+            font-size: 28px;
+            cursor: pointer;
+            border: 2px solid white;
+            background-color: transparent;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.2s;
+        }
+
+        #startButton:hover {
+            background-color: white;
+            color: black;
+        }
+
+        #controls-info {
+            font-size: 16px;
+            margin-top: 25px;
+            line-height: 1.5;
+        }
+
+        #scoreboard {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            align-items: flex-start;
+        }
+
+        .score-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 15px;
+        }
+
+        .score-column .label {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+
+        .score-display {
+            display: flex;
+            gap: 20px;
+            font-weight: bold;
+        }
+
+        .score-box {
+            text-align: center;
+        }
+
+        .score-box .points {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+<div id="blocker">
+    <div id="instructions">
+        <button id="startButton">Iniciar Juego</button>
+        <div id="controls-info">
+            Mover: W, A, S, D<br/>
+            Mirar: Mover el ratón<br/>
+            Sacar/Golpear: Clic Izquierdo o Barra Espaciadora
+        </div>
+    </div>
+</div>
+
+<div id="scoreboard">
+    <div class="score-column">
+        <div class="label">JUGADOR</div>
+        <div class="score-display">
+            <div class="score-box">
+                <div class="label">Sets</div>
+                <div id="player-sets">0</div>
+            </div>
+            <div class="score-box">
+                <div class="label">Juegos</div>
+                <div id="player-games">0</div>
+            </div>
+            <div class="score-box">
+                <div class="label">Puntos</div>
+                <div id="player-points">0</div>
+            </div>
+        </div>
+    </div>
+    <div class="score-column">
+        <div class="label">IA</div>
+        <div class="score-display">
+            <div class="score-box">
+                <div class="label">Sets</div>
+                <div id="ai-sets">0</div>
+            </div>
+            <div class="score-box">
+                <div class="label">Juegos</div>
+                <div id="ai-games">0</div>
+            </div>
+            <div class="score-box">
+                <div class="label">Puntos</div>
+                <div id="ai-points">0</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <!-- 📦 Librerías base -->
+  <script src="lib/three.min_r140.js"></script>
+  <script src="lib/OrbitControls.js"></script>
+  <script src="lib/PointerLockControls.js"></script>
+  <script src="lib/GLTFLoader.js"></script>
+  <script src="lib/cannon_062.js"></script>
+  <script src="lib/stats.min.js"></script>
+  <script src="lib/tween_18.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="lib/Stats.min.js"></script>
+
+  <!-- 🧠 Código del juego (orden importante) -->
+  <script src="js/utils.js"></script>
+  <script src="js/court.js"></script>
+  <script src="js/ball.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/ai.js"></script>
+  <script src="js/umpire.js"></script>
+  <script src="js/spectators.js"></script>
+  <script src="js/scoreboard.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

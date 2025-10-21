@@ -1,0 +1,8 @@
+Model Information:
+* title:	Wilson Tennis Racket
+* source:	https://sketchfab.com/3d-models/wilson-tennis-racket-89cfc984eada49a4a926216c1457fbbf
+* author:	shakira.clancy (https://sketchfab.com/shakira.clancy)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works
