@@ -1,16 +1,15 @@
 class Court {
   constructor () {
-    // medidas oficiales (m)
+    //medidas oficiales(m)
     this.width = 10.97;
     this.length = 23.77;
     this.singlesWidth = 8.23;
     this.singlesHalf  = this.singlesWidth * 0.5;
 
-    // red
+    //red
     this.netHeight = 0.914;
     this.netPositionZ = 0;
 
-    // nota: guardo refs útiles
     this.group = new THREE.Group();
     this.netMesh = null;
   }

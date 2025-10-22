@@ -16,15 +16,14 @@ class Scoreboard {
     const playerPts = score.player.points;
     const aiPts = score.ai.points;
     
-    // --- Lógica de Puntos Mejorada ---
     if (playerPts >= 3 && aiPts >= 3) {
       if (playerPts === aiPts) {
-        // Estado de Deuce
+        // Deuce
         this.playerPointsEl.textContent = '40';
         this.aiPointsEl.textContent = '40';
       }
       else if (playerPts > aiPts) {
-        // Ventaja para el Jugador
+        // Ventaja para el jugador
         this.playerPointsEl.textContent = 'Adv';
         this.aiPointsEl.textContent = '40';
       }
@@ -39,8 +38,7 @@ class Scoreboard {
       this.playerPointsEl.textContent = tennisPoints[playerPts] || '0';
       this.aiPointsEl.textContent = tennisPoints[aiPts] || '0';
     }
-    
-    // Actualizar Juegos y Sets
+
     this.playerGamesEl.textContent = score.player.games;
     this.aiGamesEl.textContent = score.ai.games;
     this.playerSetsEl.textContent = score.player.sets;

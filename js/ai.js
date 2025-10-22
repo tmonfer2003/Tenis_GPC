@@ -1,7 +1,3 @@
-/**
- * IA fiable: golpea más y en el saque no toca la red.
- * Lado IA: Z negativo → golpea hacia +Z.
- */
 class Ai {
   constructor () {
     this.speed = 7.8;
@@ -19,24 +15,20 @@ class Ai {
     this._targetX = 0;
     this._targetZ = this.guardLineZ;
 
-    // ventana de impacto
     this._hitRadius = 2.6;
     this._hitMinY   = 0.35;
     this._hitMaxY   = 3.2;
 
-    // tiro
     this.BASE_SPEED   = 15.2;
     this.MAX_SPEED    = 23.2;
     this.JITTER_DIR   = 0.06;
     this.JITTER_SPEED = 0.06;
     this.CORNER_BIAS  = 0.58;
 
-    // colchón sobre la red
     this.NET_MARGIN = 0.60;
   }
 
   load (scene) {
-  // Coloca el contenedor de la IA en su posición y añádelo a escena
   this.mesh.position.copy(this.homePosition);
   scene.add(this.mesh);
 
@@ -45,46 +37,38 @@ class Ai {
     const model = gltf.scene;
     this._model = model;
 
-    // Sombras y materiales OK
     model.traverse(o => {
       if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; }
     });
 
-    // (Opcional) Auto-escalar a ~1.75 m y apoyar pies en y=0
     const box = new THREE.Box3().setFromObject(model);
     const size = new THREE.Vector3(); box.getSize(size);
     const height = Math.max(size.y || 1, 1e-3);
-    const scale = 2.25 / height; // ajusta si lo ves grande/pequeño
+    const scale = 2.25 / height;
     model.scale.setScalar(scale);
     const box2 = new THREE.Box3().setFromObject(model);
     model.position.y -= box2.min.y;
-
-    // Orientación: si mira al revés, prueba 0 o ±Math.PI/2
     model.rotation.y = -Math.PI/2;
 
     this.mesh.add(model);
 
-    // Si el GLB trae animaciones (idle, etc.)
     if (gltf.animations && gltf.animations.length) {
       this._mixer = new THREE.AnimationMixer(model);
       const idle = THREE.AnimationClip.findByName(gltf.animations, 'Idle') || gltf.animations[0];
       if (idle) this._mixer.clipAction(idle).play();
     }
 
-    // === Localiza el nodo de la raqueta dentro del GLB ===
-    // 1) intenta por nombre
     let racket =
       model.getObjectByName('Racket') ||
       model.getObjectByName('raqueta') ||
       model.getObjectByProperty('name', 'racket');
 
-    // 2) si no lo encuentra por nombre, heurística por forma/nombre
     if (!racket) {
       model.traverse(o => {
         if (o.isMesh && /racket|raqueta|tennis/i.test(o.name)) racket = o;
       });
     }
-    // 3) si aún no, elige la malla más "alargada" (suele ser la raqueta)
+
     if (!racket) {
       let best = null, bestRatio = 0;
       model.traverse(o => {
@@ -97,20 +81,17 @@ class Ai {
       racket = best;
     }
 
-    // Si no pudo encontrarla, crea un ancla en la "mano" como fallback
     if (!racket) {
       const anchor = new THREE.Object3D();
-      anchor.position.set(0.30, 1.05, 0.20); // ajusta fino si hiciera falta
+      anchor.position.set(0.30, 1.05, 0.20);
       this.mesh.add(anchor);
       this.racket = anchor;
     } else {
-      // Usar la raqueta real del GLB como referencia de impacto
       this.racket = racket;
     }
   });
 }
 
-  // predicción simple para llegar bien al impacto
   _think(ball) {
     if (!ball?.mesh) {
       this._targetX = 0;
@@ -166,7 +147,6 @@ class Ai {
       const y = ball.mesh.position.y;
       const vaHaciaIA = ball.velocity.z < 0;
 
-      // doy margen para no “perder” golpes por milímetros
       if (vaHaciaIA && d < this._hitRadius && y > this._hitMinY * 0.9 && y < this._hitMaxY * 1.05) {
         this.swing(ball);
       }
@@ -177,7 +157,6 @@ class Ai {
     }
   }
 
-  // tiro balístico con doble comprobación de altura en la red
   swing(ball) {
     this.state = 'recovering';
 
@@ -222,7 +201,6 @@ class Ai {
       const vy_net = (yNeeded - from.y - 0.5 * g * tNet * tNet) / tNet + 0.14;
       vy = Math.max(vy, vy_net, 3.3);
 
-      // segunda comprobación por si el jitter deja corto
       const yNetCheck = from.y + vy * tNet + 0.5 * g * tNet * tNet;
       if (yNetCheck < yNeeded) {
         vy += (yNeeded - yNetCheck) / tNet + 0.06;
@@ -247,12 +225,10 @@ class Ai {
     requestAnimationFrame(animateBack);
   }
 
-  // saque con garantía fuerte de pasar la red
   serve(ball) {
     const lateral = Math.random() < 0.5 ? -2.0 : 2.0;
     this.mesh.position.set(lateral, 0, this.homePosition.z);
 
-    // lanzo un poco más alto y delante
     ball.mesh.position.set(this.mesh.position.x + 0.25, 1.20, this.mesh.position.z + 0.65);
     ball.velocity.set(0, 7.1, 0);
     ball.lastHitBy = 'ai';
@@ -261,7 +237,6 @@ class Ai {
     setTimeout(() => {
       const g = ball.gravity;
 
-      // cuadro de saque del jugador
       const targetZ = court.length / 2 - 5.2;
       const targetX = (lateral < 0) ? 2.1 : -2.1;
 
@@ -269,19 +244,12 @@ class Ai {
       const toTarget = new THREE.Vector3(targetX - start.x, 0, targetZ - start.z);
       const distH = toTarget.length();
       const dirH  = toTarget.normalize();
-
-      // más velocidad horizontal → menos tiempo a la red
       const vxz = Math.max(19.5, Math.min(21.5, distH / 1.0));
       let vx = dirH.x * vxz;
       let vz = dirH.z * vxz;
 
-      // tiempo al plano de red
       const tNet = (0 - start.z) / vz;
-
-      // altura objetivo en la red (colchón alto)
       const yNeeded = court.netHeight + 0.90;
-
-      // vy para (1) pasar net y (2) caer dentro ~tiempo de vuelo T
       const T = distH / vxz;
       let vy_land = (0.06 - start.y - 0.5 * g * T * T) / T;
       let vy = vy_land;
@@ -289,14 +257,12 @@ class Ai {
       if (tNet > 0 && isFinite(tNet)) {
         const vy_net = (yNeeded - start.y - 0.5 * g * tNet * tNet) / tNet + 0.18;
         vy = Math.max(vy, vy_net, 3.8);
-        // verificación inmediata
         const yNetCheck = start.y + vy * tNet + 0.5 * g * tNet * tNet;
         if (yNetCheck < yNeeded) vy += (yNeeded - yNetCheck) / tNet + 0.10;
       } else {
         vy = Math.max(vy, 3.8);
       }
 
-      // jitter leve (no tocamos la vertical)
       vx *= 1 + THREE.MathUtils.randFloatSpread(0.02);
       vz *= 1 + THREE.MathUtils.randFloatSpread(0.02);
 
@@ -304,7 +270,6 @@ class Ai {
       ball.lastHitBy = 'ai';
       ball.bounceCount = 0;
 
-      // “guardia” 1 frame: recalculo y subo vy si hiciera falta
       setTimeout(() => {
         const pos = ball.mesh.position.clone();
         const vz2 = ball.velocity.z;
@@ -313,7 +278,7 @@ class Ai {
           const yNeed2 = court.netHeight + 0.85;
           const yPred2 = pos.y + ball.velocity.y * tNet2 + 0.5 * g * tNet2 * tNet2;
           if (yPred2 < yNeed2) {
-            ball.velocity.y += (yNeed2 - yPred2) / tNet2 + 0.08; // pequeño empuje extra
+            ball.velocity.y += (yNeed2 - yPred2) / tNet2 + 0.08;
           }
         }
       }, 0);

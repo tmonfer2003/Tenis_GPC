@@ -1,6 +1,6 @@
-// === STATS (FPS) ===
+//STATS (FPS)
 const stats = new Stats();
-stats.showPanel(0);              // 0 = FPS
+stats.showPanel(0);
 document.body.appendChild(stats.dom);
 stats.dom.style.position = 'fixed';
 stats.dom.style.left = '0px';
@@ -8,7 +8,7 @@ stats.dom.style.top = '0px';
 stats.dom.style.zIndex = '9999';
 
 
-// === ESCENA Y CÁMARA ===
+//ESCENA Y CÁMARA 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.set(0, 1.7, 10);
@@ -21,7 +21,7 @@ document.body.appendChild (renderer.domElement);
 
 const swing = { active: false, phase: 'idle', t: 0, hasHit: false, lastRotX: 0, rotSpeed: 0 };
 
-// === CONTROLES ===
+//CONTROLES
 const controls = new THREE.PointerLockControls(camera, renderer.domElement);
 const blocker = document.getElementById('blocker');
 const startButton = document.getElementById('startButton');
@@ -30,7 +30,7 @@ startButton.addEventListener('click', () => controls.lock());
 controls.addEventListener('lock', () => blocker.style.display = 'none');
 controls.addEventListener('unlock', () => blocker.style.display = 'flex');
 
-// === ILUMINACIÓN ===
+//ILUMINACIÓN
 scene.add(new THREE.AmbientLight(0xffffff, 0.22));
 const dirLight = new THREE.DirectionalLight(0xfff0b0, 1.05);
 dirLight.position.set(15, 30, 20);
@@ -57,7 +57,6 @@ textureLoader.load('assets/textures/sky.png', tex => {
   scene.environment = null;
 });
 
-// === CARGA DE MODELOS Y ELEMENTOS ===
 court.load(scene);
 ball.load(scene);
 ai.load(scene);
@@ -87,7 +86,7 @@ gltfLoader.load('assets/models/wilson_tennis_racket/scene.gltf', gltf => {
   scene.add(camera);
 });
 
-// === LÓGICA DE PUNTUACIÓN ===
+//LOGICA DE PUNTUACION
 let score = {
   player: { points: 0, games: 0, sets: 0 },
   ai: { points: 0, games: 0, sets: 0 }
@@ -154,20 +153,15 @@ function resetAfterPoint(pointWinner) {
 ball.onPointScored = resetAfterPoint;
 scoreboard.update(score);
 
-// === CONTROLES DE JUGADOR ===
+//CONTROLES DE JUGADOR
 function handlePlayerAction() {
   if (!controls.isLocked) return;
-
-  // 🎾 Permitir siempre golpear si la bola está activa
-  // (no solo cuando el jugador saca)
   if (gameState === 'READY_TO_SERVE' && servingPlayer === 'player') {
-    // El jugador saca
     player.tossBall(ball, camera);
     gameState = 'SERVING_TOSS';
     window.gameState = gameState;
   }
   else if (gameState === 'SERVING_TOSS' && servingPlayer === 'player') {
-    // Golpe de saque del jugador
     player.swing(ball, camera, true);
     gameState = 'RALLY';
     window.gameState = gameState;
@@ -178,7 +172,6 @@ function handlePlayerAction() {
     gameState === 'POINT_OVER' ||
     gameState === 'SERVING_TOSS'
   ) {
-    // Permitir golpeo normal siempre que haya pelota en juego
     player.swing(ball, camera, false);
   }
 }
@@ -197,7 +190,6 @@ window.addEventListener('keydown', e => {
   }
 });
 
-// === BUCLE PRINCIPAL ===
 const clock = new THREE.Clock();
 
 function animate() {
@@ -212,9 +204,7 @@ function animate() {
     umpire.update(delta, ball, gameState);
     spectators.update(delta, ball);
 
-    // 🟢 FIX: Transición automática a RALLY tras el saque de la IA
     if (gameState === 'AI_SERVING' && ball.mesh) {
-      // Cuando la pelota ya ha cruzado la red y está bajando en el lado del jugador
       const passedNet = ball.mesh.position.z > 0;
       const goingDown = ball.velocity.y < 0;
 
@@ -231,7 +221,6 @@ function animate() {
 
 animate();
 
-// === REDIMENSIONAR ===
 window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
