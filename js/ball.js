@@ -22,9 +22,14 @@ class Ball {
   update (deltaTime, player, ai, court, gameState, servingPlayer) {
     if (!this.mesh || gameState === 'POINT_OVER') return;
 
+    // Cambio de color según quién golpeó por última vez
+    this.mesh.material.color.set(this.lastHitBy === 'ai' ? 0xff0000 : 0xffff00);
+
     if (gameState === 'READY_TO_SERVE') {
       this.velocity.set(0, 0, 0);
       this.lastHitBy = servingPlayer;
+      // Cambio de color según quien saca 
+      this.mesh.material.color.set(servingPlayer === 'ai' ? 0xff0000 : 0xffff00);
       this.bounceCount = 0;
 
       if (servingPlayer === 'player') {

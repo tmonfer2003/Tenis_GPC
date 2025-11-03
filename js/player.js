@@ -6,7 +6,7 @@ class Player {
     this.speed = 8.0;
     this.move = { forward: false, backward: false, left: false, right: false };
 
-    // ventana de golpeo (las uso en la detección)
+    // ventana de golpeo
     this.HIT_RADIUS = 2.6;
     this.HIT_MIN_Y  = 0.15;
     this.HIT_MAX_Y  = 3.0;
